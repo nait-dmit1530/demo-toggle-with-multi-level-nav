@@ -1,1 +1,296 @@
-/* dev styles here */
+:root {
+    --navy: #0c263e;
+    --dk-navy: #071629;
+    --orange: #e75a2f;
+    --off-white: #f5f5f5;
+    /* defines variables for different colours used in the project */
+}
+
+body {
+    color: var(--dk-navy); /* calls variable */
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.inner-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+/********** TYPEOGRAPHY **********/
+h1, 
+h2 {
+    font-family: 'Pacifico', cursive;
+}
+
+h1 {
+    font-size: 2.25rem;
+
+}
+
+h1 a {
+    color: var(--off-white);
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 3.125rem;
+    margin-bottom: 1.5rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    max-width: 70ch;
+        /* sets max width to 70 characters */
+
+}
+
+/********** HEADER **********/
+header {
+    background-color: var(--navy);
+    padding: 1rem 0;
+}
+.toggle-nav {
+    background-color: var(--navy);
+        /* assigns the color to the button (default color is grey */
+    border: none;
+        /* removes border around button */
+    color: var(--off-white);
+    font-size: 0.8rem;
+        /* assigns size & color to menu text in HTML */
+    text-transform: lowercase;
+    /* OPTION 1 - To make SVG & 'Menu' text stack on top of each other */
+    /* display: flex; */
+        /* makes svg & 'menu' text flex items */
+    /* flex-direction: column; */
+        /* makes svg & 'menu' text stack on top of each other */
+}
+.toggle-nav svg {
+    width: 2.1875rem;
+        /* give svg a size so it can be seen */
+    fill: var(--off-white);
+        /* gives svg a color */
+    /* OPTION 2 - To make SVG & 'Menu' text stack on top of each other */
+    display: block;
+}
+
+header nav {
+    /* OPTION 1 - To get flex items to wrap properly using from .font-container */
+    /* flex-basis: 100%; */
+        /* makes the nav flex item take 100% of the width forcing other
+            flex items to use another row */
+    /* OPTION 2 - To get flex items to wrap properly using from .font-container 
+        use shorthand */
+    /* flex: 1 0 100%; */
+    /* OPTION 1 & 2 become unneeded when position:absolute used */
+    
+    max-height: 0;
+        /* sets the maximum height of the nav element */
+    overflow: hidden;
+        /* hides the overflow content of the nav element */
+    transition: max-height 0.7s ease-in-out;
+        /* defines the type of menu tranistion and speed */
+    position: absolute;
+        /* IMPORTANT - Takes the NAV element out of the document flow 
+            and makes it absolute - This overlays the nav menu on top 
+            of content instead of causing content to be pushed down 
+            each time the nav menu opens */
+    background-color: var(--navy);
+        /* applies a background colour to the nav element since it is no longer part 
+            of the document flow */
+    left: 0;
+    top: 88px;
+    width: 100vw;
+        /* positions the nav on the screen */
+    padding: 0 1rem;
+
+}
+
+/* IMPORTANT - THE ONLY WAY THIS WORKS IS TO HAVE JAVASCRIPT CALL IT! */
+.show-nav {
+    max-height: 27rem;
+        /* find the height by looking at the nav element */
+}
+
+ul.menu {
+    border-bottom: 1px solid var(--off-white);
+        /* adds single line to the bottom of the menu */
+    margin-bottom: 1rem;
+        /* adds space to the bottom of the menu */
+}
+ul.menu a {
+    color: var(--off-white);
+        /* assigns color to anchor tags */
+    text-decoration: none;
+        /* removes underline from anchor links */
+    display: block;
+        /* makes anchor tags block level elements so entire line can be clicked
+            instead of just text */
+}
+ul.menu a:hover,
+ul.menu a:active {
+    color: var(--orange);
+    text-decoration: underline;
+}
+a.main-menu-link {
+    font-size: 1.3rem;
+        /* targets specific anchor tags */
+}
+
+ul.menu svg {
+    display: none;
+}
+
+ul.menu li {
+    line-height: 2.1875rem;
+        /* makes li elements taller to make them easier to click */
+    margin: 0.5rem 0;
+        /* adds non-clickable spacing between li elements */     
+}
+ul.submenu {
+    padding-left: 1.875rem;
+    /* indents submenu items */
+}
+ul.utility-nav {
+    display: flex;
+        /* makes the li elements flex-items so they can appear side-by-side */
+    gap: 1.5rem;
+        /* adds a space between flex-items */ 
+    margin-bottom: 1rem;
+}
+ul.utility-nav a {
+    background-color: var(--orange);
+    color: var(--off-white);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+        /* IMPORTANT!!!!! 
+            anchors are INLINE elements. INLINE elements will not apply block level
+            properties (i.e. padding, height, margins, etc.)
+
+            To make inline elements accept these properties display: inline-block
+            needs to be used
+        */
+}
+
+
+
+
+
+
+
+
+/********** MAIN CONTENT **********/
+
+
+
+section {
+    padding: 3.125rem 0;
+        /* assigns top/bottom padding to sections */
+}
+
+
+/********** MEDIA QUERIES **********/
+@media screen and (min-width: 800px) {
+    .toggle-nav {
+        display: none;
+            /* hides the SVG & 'Menu' text / button from the screen */
+    }
+    header nav {
+        max-height: 100vh;
+        position: static;
+        /* removes position:absolute to put nav elements back inside 
+            their container */
+        width: unset;
+            /* removes previously assigned width setting and puts nav 
+                element back to its default width 
+                width:auto also works */
+        display: flex;
+            /* makes both ul elements flex items so they can appear side-by-side */
+        gap: 3.125rem;
+        align-items: center;
+        overflow: visible;
+            /* removes previously assigned hidden attribute to make submenu 
+                visible */
+    }
+    ul.menu {
+        display: flex;
+            /* makes both li elements flex items so they can appear side-by-side */
+        border-bottom: none;
+        gap: 1.5rem;
+        margin-bottom: 0;
+    }
+    ul.menu li {
+        position: relative;
+            /* forces the submenu to be shown inside the menu */
+    }
+    ul.menu svg {
+        display: inline;
+        fill: var(--off-white);
+        width: 1rem;
+        /* shows dropdown arrow svg elements */
+    }
+    ul.menu .main-menu-link {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        /* positions dropdown arrow svg elements */
+    }
+
+    ul.submenu {
+        position: absolute;
+            /* pulls submenu out of document flow */
+        background-color: var(--navy);
+            /* assigns background color because submenu no longer part of document */
+        top: 45px;
+        left: 0;
+        width: 100%;
+        white-space: nowrap;
+            /* forces text that might break (wrap) onto multiple lines to not wrap */
+        text-align: right;
+        padding: 0 0.5rem;
+            /* changes previously assigned padding */
+        visibility: hidden;
+        opacity: 0;
+            /* hides submenu */
+        transition: all 0.5s ease;
+    }
+    ul.menu li:hover ul.submenu {
+        visibility: visible;
+        opacity: 1;
+            /* shows submenu when hovering over respective links */
+    }
+    ul.menu li:focus-within > ul,
+    ul.menu li > ul:focus {
+        visibility: visible;
+        opacity: 1; 
+        /* IMPORTANT = Adds Accessibility to menu system */
+    }
+
+    ul.utility-nav{
+        margin-bottom: 0;
+    }
+
+    /* DOG IMAGE POSITIONING */
+    .gallery-flex {
+        display: flex;
+        align-items: flex-start;
+    }
+    img {
+        width: 50%;
+    }
+    img:last-of-type {
+        position: relative;
+        top: 100px;
+        right: 150px;
+    }
+}
